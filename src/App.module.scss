@@ -1,0 +1,15 @@
+
+@import "./styles/_mixins";
+@import "./styles/_variables";
+
+.App{
+    @include flex-element(  $direction:column,
+    $justify: flex-start,
+    $align: stretch,
+    $wrap:wrap,
+    $gap: 0px,
+    
+  );
+    background: $dark-black;
+    background: radial-gradient(circle, $mid-black 0%, $dark-black 100%);
+}
