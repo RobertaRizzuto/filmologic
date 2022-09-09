@@ -36,7 +36,7 @@ const MainInput = ({ setMovieId }) => {
             onChange={onHandleInput}
             type="text"
           />
-          <button className={styles.button} type="submit">Search</button>
+          <button className={styles.button} type="submit">🔍︎</button>
         </form>
       )}
     </>

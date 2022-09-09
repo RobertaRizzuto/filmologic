@@ -37,10 +37,11 @@
 
 @mixin element-position(
   $position: static,
-  $right: auto,
   $top: auto,
-  $left: auto,
+  $right: auto,
   $bottom: auto,
+  $left: auto,
+
   $z-index: 1
 ) {
   position: $position;
@@ -50,7 +51,7 @@
   left: $left;
   z-index: $z-index;
 }
-@mixin button($width: 100px, $height: auto, $padding: 0) {
+@mixin button($width: auto, $height: auto, $padding: 0) {
   width: $width;
   height: $height;
   padding: $padding;

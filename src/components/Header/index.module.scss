@@ -20,8 +20,8 @@
       
       @include flex-element(
         row,
-       center,
-        center
+       flex-end,
+        center,nowrap,0px, 60%
       );
       .menu {
         @include flex-element(
@@ -35,6 +35,11 @@
   }
 .dropdown {
           z-index: 3;
+          backdrop-filter: blur(10px);
+          width: fit-content;
+          position: absolute;
+          right: 0;
+          top:60px;
           ul {
             @include flex-element(
               column,
@@ -52,11 +57,11 @@
               text-decoration: none;
               padding: 8px;
               border-radius: 6px;
-              color: $grey;
+              color: $light-pink;
             }
             a:hover {
               color: $detail-pink;
-              background-color: $light-pink;
+              
               font-weight: bold;
             }
           }
