@@ -32,7 +32,12 @@
         @include element-position(absolute, auto, auto, 0px, auto, 2);
     
         @include border(0, 12px);
-        background: linear-gradient(0deg, $dark-black 0%, $dark-black 50%,rgba(0, 0, 0, 0) 100%);
+        background: linear-gradient(
+      0deg,
+      $dark-black 0%,
+      $dark-black 20%,
+      rgba(0, 0, 0, 0) 100%
+    );
         padding: 10px;
     
         h4 {
