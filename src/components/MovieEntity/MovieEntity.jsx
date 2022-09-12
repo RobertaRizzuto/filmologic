@@ -5,17 +5,29 @@ import styles from "./index.module.scss";
 
 const MovieEntity = ({
   movieData, setMovieData,
-  movieID,
+  movieID, setMovieId,
   setModalData,
   setModalVisibility,
-  isModalVisibile,
+  isModalVisibile,searchQuery
 }) => {
  
+  
+
+useEffect(() => { searchQuery.length > 1 &&
+  GET( "search",
+          "movie",
+          `&query=${searchQuery}&page=1&include_adult=false`).then((data) => {
+    setMovieData(data.results[0]);
+    setModalData(data.results[0]);
+    
+  });
+}, [searchQuery]);
 
   useEffect(() => {
     GET("movie", movieID).then((data) => {
       setMovieData(data);
       setModalData(data);
+     
     });
   }, [movieID]);
 
@@ -28,6 +40,7 @@ const MovieEntity = ({
     movieData;
 
   return (
+    
     <div className={styles.movieEntity}>
       <div className={styles.info}>
         <div className={styles.title}>
@@ -55,6 +68,7 @@ const MovieEntity = ({
           details
         </button>
       </div>
+      
     </div>
   );
 };

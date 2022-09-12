@@ -60,9 +60,9 @@
   transition: all 0.35s;
 }
 
-@mixin generic-hover($bg-color: $third-color, $color: $contrast-color) {
+@mixin generic-hover($bg-color: $dark-black) {
   background-color: $bg-color;
-  color: $color;
+ 
   transform: scale(1.07);
 }
 

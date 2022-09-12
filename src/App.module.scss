@@ -1,15 +1,47 @@
-
 @import "./styles/_mixins";
 @import "./styles/_variables";
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #000000 #ffffff07;
+  }
 
-.App{
-    @include flex-element(  $direction:column,
-    $justify: flex-start,
-    $align: stretch,
-    $wrap:wrap,
-    $gap: 0px,
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #ffffff2d;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    width: 60%;
+    background-color: #000000;
+    border-radius: 9px;
+    border: 1px solid #ffffff2a;
+  }
+
+.App {
+  @include flex-element(column, center, center, wrap, 0px, 100%, 100%);
+  background: $dark-black;
+  background: radial-gradient(circle, $mid-black 0%, $dark-black 100%);
+  .btn {
     
-  );
-    background: $dark-black;
-    background: radial-gradient(circle, $mid-black 0%, $dark-black 100%);
+    margin: 10px;
+    padding: 15px 20px;
+    border: 1px white dotted;
+    background-color: transparent;
+
+    cursor: pointer;
+
+    color: white;
+    transition: all 0.35s;
+  }
+  .btn:hover{
+    color: $detail-pink;
+    border: 0.5px solid transparent;
+  }
 }

@@ -2,19 +2,14 @@ import { useRef, useState } from "react";
 import search from "./search.svg";
 import styles from "./index.module.scss";
 
-const MainInput = ({ setMovieId }) => {
+const MainInput = ({ setSearchQuery}) => {
   const inputRef = useRef(null);
   const [inputValue, setInputValue] = useState("");
   const [isInputVisibile, setInputVisibility] = useState(false);
 
   const onHandleSubmit = (e) => {
     e.preventDefault();
-    inputValue && setMovieId(inputValue);
-    window.scroll({
-      top: 2500,
-      left: 0,
-      behavior: "smooth",
-    });
+    inputValue && setSearchQuery(inputValue);
     setInputVisibility(false);
   };
 

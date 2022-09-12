@@ -34,7 +34,10 @@ const Header = ({ children }) => {
               <a href="#">HOME</a>
             </li>
             <li>
-              <a href="#">ABOUT</a>
+              <a href="#">DISCOVER</a>
+            </li>
+            <li>
+              <a href="#">FAVOURITES</a>
             </li>
           </ul>
         </div>

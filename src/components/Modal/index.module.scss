@@ -17,13 +17,14 @@
 
   .img {
     @include element-position(absolute, 0, auto, auto, 0, 0);
-    @include generic-appereance(100%, 100%, 0.7);
+    @include generic-appereance(100%, 100%);
     @include border(0, 12px);
     object-fit: cover;
   }
 
   .text {
     @include element-position(absolute, auto, auto, 0px, auto, 4);
+    
     @include border(0, 12px);
     background: linear-gradient(0deg, $dark-black 0%, $dark-black 50%,rgba(0, 0, 0, 0) 100%);
     padding: 20px;

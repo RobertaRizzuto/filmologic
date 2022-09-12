@@ -1,0 +1,14 @@
+@import "../../styles/_variables";
+@import "../../styles/_mixins";
+
+.counter {
+  @include flex-element(row, flex-start, center, nowrap, 5px, auto, 20px);
+  @include text-element(0, uppercase, 20px);
+
+
+  button {
+    @include button(20px);
+    @include border(0, 4px);
+    
+  }
+}
