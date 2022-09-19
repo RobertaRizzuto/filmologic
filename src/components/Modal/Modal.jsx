@@ -1,19 +1,23 @@
 import styles from "./index.module.scss";
-import { memo } from "react";
-
-const Modal = ({ data, isVisibile, onModalClick }) => {
+import { memo, useContext } from "react";
+import { ThemeContext } from "../../App";
+const Modal = () => {
+  const theme = useContext(ThemeContext);
   return (
-    isVisibile && (
-      <div className={styles.modal} onClick={() => onModalClick(false)}>
+    theme.isModalVisibile && (
+      <div
+        className={styles.modal}
+        onClick={() => theme.setModalVisibility(false)}
+      >
         <div className={styles.main}>
           <img
             className={styles.img}
-            src={`https://image.tmdb.org/t/p/w342${data.poster_path}`}
-            alt={data.title}
+            src={`https://image.tmdb.org/t/p/w342${theme.modalData.poster_path}`}
+            alt={theme.modalData.title}
           />
           <div className={styles.text}>
-            <h2 className="Modal__header">{data.title}</h2>
-            <p className="Modal__desc">{data.overview}</p>
+            <h2 className="Modal__header">{theme.modalData.title}</h2>
+            <p className="Modal__desc">{theme.modalData.overview}</p>
           </div>
         </div>
       </div>

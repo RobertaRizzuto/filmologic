@@ -1,16 +1,16 @@
 
 import styles from "./index.module.scss";
-import { memo } from "react";
+import { memo, useContext } from "react";
+import { ThemeContext } from '../../App';
 
 const TopRatedFilteredList = ({
   data,
   children,
-  setModalVisibility,
-  isModalVisibile,
-  setModalData,
+
 }) => {
+  const theme = useContext(ThemeContext);
   return (
-    <div className={styles.TopRatedFilteredListSection}>
+    <div ref={theme.filterRef} className={styles.TopRatedFilteredListSection}>
       <div className={styles.top}><h4>Filter Top rated films by average rating:</h4>
       {children}</div>
       <div className={styles.TopRatedFilteredList}>
@@ -19,8 +19,8 @@ const TopRatedFilteredList = ({
           <div key={i}
             className={styles.Card}
             onClick={() => {
-              setModalVisibility(!isModalVisibile);
-              setModalData(el);
+              theme.setModalVisibility(!theme.isModalVisibile);
+              theme.setModalData(el);
             }}
           >
             <img

@@ -48,13 +48,13 @@
 
       list-style-type: none;
 
-      a {
-        text-decoration: none;
+      li {
+        text-decorlition: none;
         padding: 8px;
         border-radius: 6px;
         color: $light-pink;
       }
-      a:hover {
+      li:hover {
         color: $detail-pink;
 
         font-weight: bold;

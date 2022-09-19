@@ -1,46 +1,41 @@
-import { useEffect, useCallback, memo } from "react";
+import { useEffect, useCallback, memo, useContext } from "react";
 import { GET } from "../../utils/api.js";
 
 import styles from "./index.module.scss";
 
-const MovieEntity = ({
-  movieData, setMovieData,
-  movieID, setMovieId,
-  setModalData,
-  setModalVisibility,
-  isModalVisibile,searchQuery
-}) => {
- 
-  
+import { ThemeContext } from "../../App";
 
-useEffect(() => { searchQuery.length > 1 &&
-  GET( "search",
-          "movie",
-          `&query=${searchQuery}&page=1&include_adult=false`).then((data) => {
-    setMovieData(data.results[0]);
-    setModalData(data.results[0]);
-    
-  });
-}, [searchQuery]);
+const MovieEntity = () => {
+  const theme = useContext(ThemeContext);
 
   useEffect(() => {
-    GET("movie", movieID).then((data) => {
-      setMovieData(data);
-      setModalData(data);
-     
+    theme.searchQuery.length > 1 &&
+      GET(
+        "search",
+        "movie",
+        `&query=${theme.searchQuery}&page=1&include_adult=false`
+      ).then((data) => {
+        theme.setMovieData(data.results[0]);
+        theme.setModalData(data.results[0]);
+      });
+  }, [theme.searchQuery]);
+
+  useEffect(() => {
+    GET("movie", theme.movieID).then((data) => {
+      theme.setMovieData(data);
+      theme.setModalData(data);
     });
-  }, [movieID]);
+  }, [theme.movieID]);
 
   const onHandleClick = useCallback(
-    () => setModalVisibility(true),
-    [isModalVisibile]
+    () => theme.setModalVisibility(true),
+    [theme.isModalVisibile]
   );
 
   const { poster_path, original_title, genres, vote_average, tagline, title } =
-    movieData;
+    theme.movieData;
 
   return (
-    
     <div className={styles.movieEntity}>
       <div className={styles.info}>
         <div className={styles.title}>
@@ -68,7 +63,6 @@ useEffect(() => { searchQuery.length > 1 &&
           details
         </button>
       </div>
-      
     </div>
   );
 };

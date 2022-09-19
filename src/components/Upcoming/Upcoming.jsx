@@ -1,8 +1,9 @@
 import styles from "./index.module.scss";
-import { memo } from "react";
-
-const Upcoming = ({ data, setModalVisibility, isModalVisibile, setModalData}) => {
+import { memo, useContext } from "react";
+import { ThemeContext } from '../../App';
+const Upcoming = ({ data}) => {
   
+  const theme = useContext(ThemeContext);
   
   return (
     <div className={styles.Upcoming}>
@@ -11,8 +12,8 @@ const Upcoming = ({ data, setModalVisibility, isModalVisibile, setModalData}) =>
           <div key={i}
             className={styles.Card}
             onClick={() => {
-              setModalVisibility(!isModalVisibile);
-              setModalData(data);
+              theme.setModalVisibility(!theme.isModalVisibile);
+              theme.setModalData(data);
             }}
           >
             <img

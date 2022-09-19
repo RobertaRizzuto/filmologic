@@ -1,17 +1,39 @@
-import { useCallback, useState } from "react";
+import { useCallback, useContext, useState } from "react";
 import styles from "./index.module.scss";
 import logo from "./logo.svg";
 import menu from "./menu.svg";
 
+
+import { ThemeContext } from "../../App";
+
+import { useRef } from "react";
+
+
+  
 const Header = ({ children }) => {
   const [isDropdownVisible, setDropdownVisibility] = useState(false);
   const onHadleClick = useCallback(
     () => setDropdownVisibility(!isDropdownVisible),
     [isDropdownVisible]
   );
+  const theme = useContext(ThemeContext);
+  const navRef= useRef(null)
+
+  const scrollToSection = (ref) =>
+  window.scrollTo({
+    behavior: "smooth",
+    top: ref?.current?.offsetTop - navRef?.current?.offsetHeight,
+  });
+  const scrolltoTop = () => {
+    window.scrollTo({
+      behavior: "smooth",
+      top: 0,
+    });
+  };
+
   return (
     <header className={styles.Header}>
-      <nav className={styles.navbar}>
+      <nav ref={navRef} className={styles.navbar}>
         <section className={styles.logotype}>
           <img className={styles.img} src={logo} alt="logo" />
         </section>
@@ -30,14 +52,15 @@ const Header = ({ children }) => {
       {isDropdownVisible && (
         <div className={styles.dropdown}>
           <ul>
-            <li>
-              <a href="#">HOME</a>
+            <li  onClick={()=>scrollToSection(theme.discoverRef)}>
+              DISCOVER
             </li>
-            <li>
-              <a href="#">DISCOVER</a>
+            <li   onClick={()=>scrollToSection(theme.filterRef)}>
+              FILTER TOP RATED
             </li>
-            <li>
-              <a href="#">FAVOURITES</a>
+
+            <li   onClick={scrolltoTop}>
+              BACK TO THE TOP
             </li>
           </ul>
         </div>

@@ -1,17 +1,21 @@
 import styles from "./index.module.scss";
-import { memo } from "react";
-
-const Popular = ({ data, setModalVisibility, isModalVisibile, setModalData}) => {
-  
+import { memo, useContext } from "react";
+import { ThemeContext } from "../../App";
+const Popular = ({
+  data
+}) => {
+  const theme = useContext(ThemeContext);
   return (
     <div className={styles.Popular}>
+    
       {data &&
-        data.reverse().map((data,  i) => (
-          <div key={i}
+        data.reverse().map((data, i) => (
+          <div
+            key={i}
             className={styles.Card}
             onClick={() => {
-              setModalVisibility(!isModalVisibile);
-              setModalData(data);
+              theme.setModalVisibility(!theme.isModalVisibile);
+              theme.setModalData(data);
             }}
           >
             <img

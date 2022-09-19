@@ -1,15 +1,16 @@
 import styles from "./index.module.scss";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { GET } from "../../utils/api";
 import TopRated from "../TopRated/TopRated";
 import Popular from "../Popular/Popular";
 import Upcoming from "../Upcoming/Upcoming";
 import TopRatedFilteredList from "../TopRatedFilteredList/TopRatedFilteredList";
 import Counter from "../Counter/Counter";
+import { ThemeContext } from "../../App";
 
-
-const Discover = ({ setModalVisibility, isModalVisibile, setModalData }) => {
+const Discover = () => {
+  const theme = useContext(ThemeContext);
   const [movieLists, setMovieLists] = useState({});
   const [filteredList, setFilteredList] = useState([]);
   const [visibleSection, setVisibleSection] = useState("topRated");
@@ -38,15 +39,14 @@ const Discover = ({ setModalVisibility, isModalVisibile, setModalData }) => {
     [movieLists, value]
   );
 
-
   return (
-    <div className={styles.Discover}>
+    <div  ref={theme.discoverRef}  className={styles.Discover}>
       <ul className={styles.ul}>
         <button
           onClick={() => setVisibleSection("topRated")}
           style={
             visibleSection === "topRated"
-              ? { borderBottom: "4px solid #ac4579", color: "white"}
+              ? { borderBottom: "4px solid #ac4579", color: "white" }
               : { borderBottom: "none" }
           }
           className={styles.btn}
@@ -57,7 +57,7 @@ const Discover = ({ setModalVisibility, isModalVisibile, setModalData }) => {
           onClick={() => setVisibleSection("popular")}
           style={
             visibleSection === "popular"
-              ? { borderBottom: "4px solid #ac4579" , color: "white"}
+              ? { borderBottom: "4px solid #ac4579", color: "white" }
               : { borderBottom: "none" }
           }
           className={styles.btn}
@@ -79,34 +79,26 @@ const Discover = ({ setModalVisibility, isModalVisibile, setModalData }) => {
       {visibleSection === "topRated" && (
         <TopRated
           data={movieLists.topRated}
-          setModalVisibility={setModalVisibility}
-          isModalVisibile={isModalVisibile}
-          setModalData={setModalData}
+        
         />
       )}
       {visibleSection === "popular" && (
         <Popular
           data={movieLists.popular}
-          setModalVisibility={setModalVisibility}
-          isModalVisibile={isModalVisibile}
-          setModalData={setModalData}
+          
         />
       )}
       {visibleSection === "upcoming" && (
         <Upcoming
           data={movieLists.upcoming}
-          setModalVisibility={setModalVisibility}
-          isModalVisibile={isModalVisibile}
-          setModalData={setModalData}
+         
         />
       )}
-  <hr />
-  {movieLists.topRated && (
+      <hr />
+      {movieLists.topRated && (
         <TopRatedFilteredList
           data={filteredList}
-          setModalVisibility={setModalVisibility}
-          isModalVisibile={isModalVisibile}
-          setModalData={setModalData}
+       
         >
           <Counter
             increase={() => setValue((prev) => prev + 0.1)}
@@ -115,10 +107,8 @@ const Discover = ({ setModalVisibility, isModalVisibile, setModalData }) => {
           />
         </TopRatedFilteredList>
       )}
-        <hr />
+      <hr />
     </div>
-     
-    
   );
 };
 export default Discover;

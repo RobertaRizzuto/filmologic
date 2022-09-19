@@ -1,8 +1,9 @@
 import styles from "./index.module.scss";
-import { memo } from "react";
+import { memo, useContext } from "react";
+import { ThemeContext } from '../../App';
 
-const TopRated = ({ data, setModalVisibility, isModalVisibile, setModalData}) => {
-  
+const TopRated = ({ data}) => {
+const theme = useContext(ThemeContext);  
   return (
     <div className={styles.TopRated}>
       {data &&
@@ -10,8 +11,8 @@ const TopRated = ({ data, setModalVisibility, isModalVisibile, setModalData}) =>
           <div key={i}
             className={styles.Card}
             onClick={() => {
-              setModalVisibility(!isModalVisibile);
-              setModalData(data);
+              theme.setModalVisibility(!theme.isModalVisibile);
+              theme.setModalData(data);
             }}
           >
             <img
